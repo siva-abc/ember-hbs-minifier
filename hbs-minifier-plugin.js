@@ -107,13 +107,6 @@ module.exports = function(config) {
   return class HBSMinifierPlugin extends BasePlugin {
 
     transform(ast) {
-      let startLoc = ast.loc ? ast.loc.start : {};
-      /*
-        checking for line and column to avoid registering the plugin for ProgramNode inside a BlockStatement.
-      */
-      if (startLoc.line !== 1 || startLoc.column !== 0) {
-        return ast;
-      }
 
       let plugin = HBSMinifierPlugin.createASTPlugin(config);
       this.syntax.traverse(ast, plugin.visitor);

@@ -111,9 +111,8 @@ function canTrimUnnecessaryWhiteSpace(value, config) {
 function canTrimBlockStatementContent(node, config) {
   // If a block or all the blocks is/are skiped (or) named as 'no-minify' then we need to preserve the whitespace.
   let componentName = node.path.original;
-  if (!(config.components.indexOf(componentName) !== -1 || componentName === 'no-minify' || config.components === 'all')) {
-    return true;
-  }
+  let components = config.components;
+  return !(components.indexOf(componentName) !== -1 || componentName === 'no-minify' || components === 'all');
 }
 
 function canTrimElementNodeContent(node, config) {
